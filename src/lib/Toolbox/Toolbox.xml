@@ -2,21 +2,21 @@
     <category name="Sprites" colour="#4C97FF">
         <block type="sprites_getsprite" />
         <block type="sprites_getcloneofwithvar" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="sprites_stage" />
         <block type="sprites_isstage" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="sprites_getblockuser" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="sprites_issprite" />
         <block type="sprites_isdisposed" />
         <block type="sprites_isoriginal" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="sprites_getname" />
         <block type="sprites_getx" />
         <block type="sprites_gety" />
         <block type="sprites_getdir" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="sprites_setx" />
         <block type="sprites_sety" />
         <block type="sprites_setdir" />
@@ -32,18 +32,18 @@
     <category name="Control" colour="#FFAB19">
         <block type="control_wait" />
         <block type="control_waituntil" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="control_repeat" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="control_ifthen" />
         <block type="control_ifthenelse" />
         <block type="control_ifthenreturn" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="control_while" />
         <block type="control_dowhile" />
         <block type="control_repeatuntil" />
         <block type="control_continue" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="control_switch" />
         <block type="control_case" />
         <block type="control_default" />
@@ -60,7 +60,7 @@
         <block type="sensing_alert" />
         <block type="sensing_prompt" />
         <block type="sensing_confirm" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="sensing_time" />
         <block type="sensing_year" />
         <block type="sensing_leapyear" />
@@ -73,7 +73,7 @@
         <block type="literals_string" />
         <block type="literals_color" />
         <block type="literals_array" />
-        <sep gap="8"/>
+        <sep gap="8"></sep>
         <block type="literals_arraylength" />
         <block type="literals_object" />
     </category>
@@ -82,25 +82,25 @@
         <block type="operators_strictequals" />
         <block type="operators_more" />
         <block type="operators_less" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="operators_and" />
         <block type="operators_or" />
         <block type="operators_xor" />
         <block type="operators_not" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="operators_add" />
         <block type="operators_minus" />
         <block type="operators_multiply" />
         <block type="operators_divide" />
         <block type="operators_power" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="operators_log" />
         <block type="operators_root" />
         <block type="operators_adv" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="operators_random" />
         <block type="operators_randomint" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="operators_join" />
         <block type="operators_letter" />
         <block type="operators_length" />
@@ -108,13 +108,13 @@
     <category name="Conversions" colour="#8BC059">
         <block type="conversions_tonumber" />
         <block type="conversions_tostring" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="conversions_time" />
     </category>
     <category name="Variables" colour="#FF8C1A">
         <block type="variable_set" />
         <block type="variable_get" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="variable_setls" />
         <block type="variable_getls" />
     </category>
@@ -122,22 +122,22 @@
         <block type="json_validate" />
         <block type="json_tojson" />
         <block type="json_tostring" />
-        <sep gap="64"/>
+        <sep gap="64"></sep>
         <block type="json_arrayinsert" />
         <block type="json_arrayset" />
         <block type="json_arraymerge" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="json_arrayget" />
         <block type="json_arraylength" />
-        <sep gap="64"/>
+        <sep gap="64"></sep>
         <block type="json_objectset" />
         <block type="json_objectmerge" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="json_objectget" />
         <block type="json_objectkeys" />
         <block type="json_objectvalues" />
     </category>
-    <sep/>
+    <sep></sep>
     <category name="Blocks" colour="#7B7996">
         <block type="blocks_create" />
         <block type="blocks_createobject" />
@@ -146,10 +146,10 @@
         <block type="blocks_callhat" />
         <block type="blocks_input" />
         <block type="blocks_menu" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="blocks_get" />
         <block type="blocks_return" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="blocks_saveloopdata" />
         <block type="blocks_getloopdata" />
     </category>
@@ -165,7 +165,7 @@
         </block>
         <block type="functions_return" />
         <block type="functions_arg" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="functions_execute_a" />
         <block type="functions_execute_b" />
     </category>
@@ -173,13 +173,13 @@
         <block type="debug_log" />
         <block type="debug_warn" />
         <block type="debug_error" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="debug_rawblock" />
         <block type="debug_raw" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="debug_comment" />
         <block type="debug_commentstack" />
-        <sep gap="48"/>
+        <sep gap="48"></sep>
         <block type="debug_catch" />
     </category>
 </xml>

@@ -5,16 +5,6 @@ import registerBlock from '../register';
 const categoryPrefix = 'control_';
 const categoryColor = '#FFAB19';
 
-javascriptGenerator.valueToCode = function () {
-    return undefined;
-};
-
-javascriptGenerator.ORDER_ATOMIC = undefined;
-
-javascriptGenerator.statementToCode = function () {
-    return undefined;
-};
-
 function register() {
     // wait in milliseconds
     registerBlock(`${categoryPrefix}wait`, {
@@ -30,8 +20,8 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const MS = javascriptGenerator.valueToCode();
+    }, (block) => {
+        const MS = javascriptGenerator.valueToCode(block, 'MS', javascriptGenerator.ORDER_ATOMIC);
         const code = `await new Promise(resolve => setTimeout(resolve, ${MS}))`;
         return `${code}\n`;
     })
@@ -50,8 +40,8 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const CONDITION = javascriptGenerator.valueToCode();
+    }, (block) => {
+        const CONDITION = javascriptGenerator.valueToCode(block, 'CONDITION', javascriptGenerator.ORDER_ATOMIC);
         const code = `await new Promise(resolve => { let x = setInterval(() => { if (${CONDITION}) { clearInterval(x); resolve() } }, 50) })`;
         return `${code}\n`;
     })
@@ -77,9 +67,9 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const TIMES = javascriptGenerator.valueToCode();
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const TIMES = javascriptGenerator.valueToCode(block, 'TIMES', javascriptGenerator.ORDER_ATOMIC);
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const variable = compileVars.new()
         const code = `for (var ${variable} = 0; ${variable} < ${TIMES}; ${variable}++) { ${BLOCKS} }`;
         return `${code}\n`;
@@ -106,9 +96,9 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const CONDITION = javascriptGenerator.valueToCode();
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const CONDITION = javascriptGenerator.valueToCode(block, 'CONDITION', javascriptGenerator.ORDER_ATOMIC);
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `if (${CONDITION ? `Boolean(${CONDITION})` : 'false'}) { ${BLOCKS} };`;
         return `${code}\n`;
     })
@@ -141,10 +131,10 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const CONDITION = javascriptGenerator.valueToCode();
-        const BLOCKS = javascriptGenerator.statementToCode();
-        const BLOCKS2 = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const CONDITION = javascriptGenerator.valueToCode(block, 'CONDITION', javascriptGenerator.ORDER_ATOMIC);
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const BLOCKS2 = javascriptGenerator.statementToCode(block, 'BLOCKS2');
         const code = `if (${CONDITION ? `Boolean(${CONDITION})` : 'false'}) {
             ${BLOCKS}
         } else {
@@ -174,10 +164,10 @@ function register() {
         output: null,
         inputsInline: false,
         colour: categoryColor
-    }, () => {
-        const CONDITION = javascriptGenerator.valueToCode();
-        const X = javascriptGenerator.valueToCode();
-        const Y = javascriptGenerator.valueToCode();
+    }, (block) => {
+        const CONDITION = javascriptGenerator.valueToCode(block, 'CONDITION', javascriptGenerator.ORDER_ATOMIC);
+        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
+        const Y = javascriptGenerator.valueToCode(block, 'Y', javascriptGenerator.ORDER_ATOMIC);
         return [`(${CONDITION || false} ? ${X} : ${Y})`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -202,9 +192,9 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const VALUE = javascriptGenerator.valueToCode();
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const VALUE = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `switch (${VALUE || "''"}) { ${BLOCKS} };`;
         return `${code}\n`;
     })
@@ -229,9 +219,9 @@ function register() {
         nextStatement: "Case",
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const VALUE = javascriptGenerator.valueToCode();
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const VALUE = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `case (${VALUE || "''"}): ${BLOCKS}`;
         return `${code}\n`;
     })
@@ -251,8 +241,8 @@ function register() {
         previousStatement: "Case",
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `default: ${BLOCKS}`;
         return `${code}\n`;
     })
@@ -278,9 +268,9 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const CONDITION = javascriptGenerator.valueToCode();
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const CONDITION = javascriptGenerator.valueToCode(block, 'CONDITION', javascriptGenerator.ORDER_ATOMIC);
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `while (${CONDITION ? `Boolean(${CONDITION})` : 'false'}) { ${BLOCKS} };`;
         return `${code}\n`;
     })
@@ -306,9 +296,9 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const CONDITION = javascriptGenerator.valueToCode();
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const CONDITION = javascriptGenerator.valueToCode(block, 'CONDITION', javascriptGenerator.ORDER_ATOMIC);
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `do { ${BLOCKS} } while (${CONDITION ? `Boolean(${CONDITION})` : 'false'});`;
         return `${code}\n`;
     })
@@ -334,9 +324,9 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const CONDITION = javascriptGenerator.valueToCode();
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const CONDITION = javascriptGenerator.valueToCode(block, 'CONDITION', javascriptGenerator.ORDER_ATOMIC);
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `while (${CONDITION ? `!Boolean(${CONDITION})` : 'true'}) { ${BLOCKS} };`;
         return `${code}\n`;
     })
@@ -349,7 +339,7 @@ function register() {
         previousStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, () => {
+    }, (block) => {
         const code = `break;`;
         return `${code}\n`;
     })
@@ -361,7 +351,7 @@ function register() {
         previousStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, () => {
+    }, (block) => {
         const code = `continue;`;
         return `${code}\n`;
     })

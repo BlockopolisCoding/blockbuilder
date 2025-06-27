@@ -35,4 +35,7 @@
     button:hover {
         background: rgba(0, 0, 0, 0.2);
     }
+    :global(body.dark) button:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
 </style>

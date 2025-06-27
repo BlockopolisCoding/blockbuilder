@@ -42,8 +42,8 @@
 
     .nav {
         position: fixed;
-        left: 0;
-        top: 0;
+        left: 0px;
+        top: 0px;
         width: 100%;
         height: var(--nav-height);
 
@@ -72,6 +72,14 @@
         height: 28px;
     }
 
+    :global(body.dark) .theme-switcher:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+    
+
+    :global(body.dark) .nav {
+        background: #2A293F;
+    }
 
     .moon {
         display: block;
@@ -79,5 +87,10 @@
     .sun {
         display: none;
     }
-
+    :global(body.dark) .moon {
+        display: none;
+    }
+    :global(body.dark) .sun {
+        display: block;
+    }
 </style>

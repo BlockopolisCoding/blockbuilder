@@ -4,11 +4,6 @@ import registerBlock from '../register';
 const categoryPrefix = 'conversions_';
 const categoryColor = '#8BC059';
 
-let block;
-block.getFieldValue = function () {
-    return undefined;
-};
-
 function register() {
     // tonumber
     registerBlock(`${categoryPrefix}tonumber`, {
@@ -22,8 +17,8 @@ function register() {
         output: "Number",
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const VAL = javascriptGenerator.valueToCode();
+    }, (block) => {
+        const VAL = javascriptGenerator.valueToCode(block, 'VAL', javascriptGenerator.ORDER_ATOMIC);
 
         return [`Number(${VAL})`, javascriptGenerator.ORDER_ATOMIC];
     })
@@ -40,8 +35,8 @@ function register() {
         output: "String",
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const VAL = javascriptGenerator.valueToCode();
+    }, (block) => {
+        const VAL = javascriptGenerator.valueToCode(block, 'VAL', javascriptGenerator.ORDER_ATOMIC);
 
         return [`String(${VAL})`, javascriptGenerator.ORDER_ATOMIC];
     })
@@ -82,9 +77,9 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const VAL = javascriptGenerator.valueToCode();
-        const MENU1 = block.getFieldValue();
-        const MENU2 = block.getFieldValue();
+        const VAL = javascriptGenerator.valueToCode(block, 'VAL', javascriptGenerator.ORDER_ATOMIC);
+        const MENU1 = block.getFieldValue('MENU1');
+        const MENU2 = block.getFieldValue('MENU2');
 
         return [`(${VAL} * ${MENU1} / ${MENU2})`, javascriptGenerator.ORDER_ATOMIC];
     })

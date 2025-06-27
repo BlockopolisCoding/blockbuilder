@@ -19,7 +19,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const NUMBER = block.getFieldValue();
+        const NUMBER = block.getFieldValue('NUMBER');
         const code = `Number(${NUMBER})`;
         return [code, javascriptGenerator.ORDER_NONE];
     })
@@ -37,7 +37,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const TEXT = block.getFieldValue();
+        const TEXT = block.getFieldValue('TEXT');
         const code = `String(${JSON.stringify(TEXT)})`;
         return [code, javascriptGenerator.ORDER_NONE];
     })
@@ -59,7 +59,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const code = block.getFieldValue();
+        const code = block.getFieldValue('STATE');
         return [code, javascriptGenerator.ORDER_NONE];
     })
 }

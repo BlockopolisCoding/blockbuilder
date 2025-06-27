@@ -24,9 +24,9 @@ function register() {
         ],
         inputsInline: true,
         colour: categoryColor,
-    }, () => {
-        const TIME = javascriptGenerator.valueToCode();
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const TIME = javascriptGenerator.valueToCode(block, 'TIME', javascriptGenerator.ORDER_ATOMIC);
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `setInterval(async () => { ${BLOCKS} }, (${TIME} * 1000));`;
         return `${code}\n`;
     })
@@ -51,9 +51,9 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor,
-    }, () => {
-        const TIME = javascriptGenerator.valueToCode();
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const TIME = javascriptGenerator.valueToCode(block, 'TIME', javascriptGenerator.ORDER_ATOMIC);
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `setTimeout(async () => { ${BLOCKS} }, (${TIME} * 1000));`;
         return `${code}\n`;
     })
@@ -73,8 +73,8 @@ function register() {
         ],
         inputsInline: true,
         colour: categoryColor,
-    }, () => {
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         let code = `Scratch.vm.runtime.on('PROJECT_START', async()=>{${BLOCKS}});`;
         return `${code}\n`;
     })
@@ -92,8 +92,8 @@ function register() {
         ],
         inputsInline: true,
         colour: categoryColor,
-    }, () => {
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         let code = `Scratch.vm.runtime.on('PROJECT_STOP_ALL', async()=>{${BLOCKS}});`;
         return `${code}\n`;
     })
@@ -111,8 +111,8 @@ function register() {
         ],
         inputsInline: true,
         colour: categoryColor,
-    }, () => {
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         let code = `Scratch.vm.runtime.on('BEFORE_EXECUTE', async()=>{${BLOCKS}});`;
         return `${code}\n`;
     })
@@ -130,8 +130,8 @@ function register() {
         ],
         inputsInline: true,
         colour: categoryColor,
-    }, () => {
-        const BLOCKS = javascriptGenerator.statementToCode();
+    }, (block) => {
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         let code = `Scratch.vm.runtime.on('AFTER_EXECUTE', async()=>{${BLOCKS}});`;
         return `${code}\n`;
     })

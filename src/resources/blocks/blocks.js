@@ -1,5 +1,6 @@
 import javascriptGenerator from '../javascriptGenerator';
 import registerBlock from '../register';
+import Blockly from 'blockly/core'
 
 const categoryPrefix = 'blocks_';
 const categoryColor = '#7B7996';
@@ -97,14 +98,14 @@ function register() {
         inputsInline: false,
         colour: categoryColor,
     }, (block) => {
-        const ID = block.getFieldValue()
-        const TEXT = block.getFieldValue()
-        const TERMINAL = block.getFieldValue()
-        const DISABLE_MONITOR = block.getFieldValue()
-        const BRANCH_COUNT = block.getFieldValue()
-        const TYPE = block.getFieldValue()
-        const INPUTS = javascriptGenerator.statementToCode();
-        const FUNC = javascriptGenerator.statementToCode();
+        const ID = block.getFieldValue('ID')
+        const TEXT = block.getFieldValue('TEXT')
+        const TERMINAL = block.getFieldValue('TERMINAL')
+        const DISABLE_MONITOR = block.getFieldValue('DISABLE_MONITOR')
+        const BRANCH_COUNT = block.getFieldValue('BRANCH_COUNT')
+        const TYPE = block.getFieldValue('TYPE')
+        const INPUTS = javascriptGenerator.statementToCode(block, 'INPUTS');
+        const FUNC = javascriptGenerator.statementToCode(block, 'FUNC');
         
         let code;
 
@@ -185,10 +186,10 @@ function register() {
         inputsInline: false,
         colour: categoryColor,
     }, (block) => {
-        const ID = block.getFieldValue()
-        const TEXT = block.getFieldValue()
-        const TYPE = block.getFieldValue()
-        const FUNC = javascriptGenerator.statementToCode();
+        const ID = block.getFieldValue('ID')
+        const TEXT = block.getFieldValue('TEXT')
+        const TYPE = block.getFieldValue('TYPE')
+        const FUNC = javascriptGenerator.statementToCode(block, 'FUNC');
         
         let code;
         if (TYPE === 'BUTTON') {
@@ -277,12 +278,12 @@ function register() {
         inputsInline: false,
         colour: categoryColor,
     }, (block) => {
-        const ID = block.getFieldValue()
-        const TEXT = block.getFieldValue()
-        const EDGE_ACTIVATED = block.getFieldValue()
-        const SHOULDRESTARTEXISTINGTHREADS = block.getFieldValue()
-        const INPUTS = javascriptGenerator.statementToCode();
-        const FUNC = javascriptGenerator.statementToCode();
+        const ID = block.getFieldValue('ID')
+        const TEXT = block.getFieldValue('TEXT')
+        const EDGE_ACTIVATED = block.getFieldValue('EDGE_ACTIVATED')
+        const SHOULDRESTARTEXISTINGTHREADS = block.getFieldValue('SHOULDRESTARTEXISTINGTHREADS')
+        const INPUTS = javascriptGenerator.statementToCode(block, 'INPUTS');
+        const FUNC = javascriptGenerator.statementToCode(block, 'FUNC');
         
         let code = `blocks.push({
             opcode: '${ID}',
@@ -327,8 +328,8 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const BRANCH = block.getFieldValue()
-        const LOOP = block.getFieldValue()
+        const BRANCH = block.getFieldValue('BRANCH')
+        const LOOP = block.getFieldValue('LOOP')
         let code;
 
         if (LOOP === 'true') {
@@ -386,9 +387,9 @@ function register() {
         inputsInline: false,
         colour: categoryColor,
     }, (block) => {
-        const ID = block.getFieldValue()
-        const TYPE = block.getFieldValue()
-        const DEFAULT = javascriptGenerator.valueToCode();
+        const ID = block.getFieldValue('ID')
+        const TYPE = block.getFieldValue('TYPE')
+        const DEFAULT = javascriptGenerator.valueToCode(block, 'DEFAULT', javascriptGenerator.ORDER_ATOMIC);
         
         const code = `"${ID}": {
             type: Scratch.ArgumentType.${TYPE}, ${DEFAULT ? `
@@ -423,8 +424,8 @@ function register() {
         inputsInline: false,
         colour: categoryColor,
     }, (block) => {
-        const ID = block.getFieldValue()
-        const MENU = block.getFieldValue()
+        const ID = block.getFieldValue('ID')
+        const MENU = block.getFieldValue('MENU')
         
         const code = `"${ID}": {
             type: Scratch.ArgumentType.STRING,
@@ -448,7 +449,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const NAME = block.getFieldValue()
+        const NAME = block.getFieldValue('NAME')
         return [`args["${NAME}"]`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -465,7 +466,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor,
     }, (block) => {
-        const VALUE = javascriptGenerator.valueToCode();
+        const VALUE = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
         const code = `return ${VALUE || ''}`;
         return `${code}\n`;
     })
@@ -486,7 +487,7 @@ function register() {
             inputsInline: true,
             colour: categoryColor,
         }, (block) => {
-            const NAME = block.getFieldValue()
+            const NAME = block.getFieldValue('NAME')
             const code = `Scratch.vm.runtime.startHats(\`\${Extension.prototype.getInfo().id}_${NAME}\`)`;
             return `${code}\n`;
         })
@@ -510,8 +511,8 @@ function register() {
         inputsInline: true,
         colour: categoryColor,
     }, (block) => {
-        const NAME = block.getFieldValue();
-        const VALUE = javascriptGenerator.valueToCode();
+        const NAME = block.getFieldValue('NAME');
+        const VALUE = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
         const code = `util.stackFrame[${JSON.stringify(NAME)}] = ${VALUE || "null"};`;
         return `${code}\n`;
     })
@@ -530,7 +531,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor,
     }, (block) => {
-        const NAME = block.getFieldValue();
+        const NAME = block.getFieldValue('NAME');
         const code = `(util.stackFrame[${JSON.stringify(NAME)}] ?? null)`;
         return [`(${code})`, javascriptGenerator.ORDER_ATOMIC];
     })

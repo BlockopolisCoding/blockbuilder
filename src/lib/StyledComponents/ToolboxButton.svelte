@@ -29,4 +29,13 @@
         background: white;
     }
 
+    :global(body.dark) button {
+        color: #ccc;
+        border-color: #c6c6c6;
+    }
+    :global(body.dark) button:focus,
+    :global(body.dark) button:hover,
+    :global(body.dark) button:active {
+        background: #111;
+    }
 </style>

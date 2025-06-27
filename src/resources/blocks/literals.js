@@ -41,7 +41,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const NUMBER = block.getFieldValue()
+        const NUMBER = block.getFieldValue('NUMBER')
 
         return [NUMBER, javascriptGenerator.ORDER_ATOMIC];
     })
@@ -53,7 +53,7 @@ function register() {
         output: "Null",
         inputsInline: true,
         colour: categoryColor
-    }, () => {
+    }, (block) => {
         return ['null', javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -72,7 +72,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const STRING = block.getFieldValue()
+        const STRING = block.getFieldValue('STRING')
 
         return [JSON.stringify(STRING), javascriptGenerator.ORDER_ATOMIC]; // who decided it was a good idea to do this? they could easily insert an it's, and then it instantly breaks
     })
@@ -91,7 +91,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const COLOR = block.getFieldValue()
+        const COLOR = block.getFieldValue('COLOR')
 
         return ["'" + COLOR + "'", javascriptGenerator.ORDER_ATOMIC];
     })
@@ -103,7 +103,7 @@ function register() {
         output: "JSONArray",
         inputsInline: true,
         colour: categoryColor
-    }, () => {
+    }, (block) => {
         return ["[]", javascriptGenerator.ORDER_ATOMIC];
     })
     registerBlock(`${categoryPrefix}arraylength`, {
@@ -118,8 +118,8 @@ function register() {
         output: "JSONArray",
         inputsInline: true,
         colour: categoryColor
-    }, () => {
-        const X = javascriptGenerator.valueToCode();
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
         return [`Array(${X || 0})`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -130,7 +130,7 @@ function register() {
         output: "JSONObject",
         inputsInline: true,
         colour: categoryColor
-    }, () => {
+    }, (block) => {
         return ["{}", javascriptGenerator.ORDER_ATOMIC];
     })
 }
