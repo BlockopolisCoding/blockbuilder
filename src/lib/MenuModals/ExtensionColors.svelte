@@ -198,17 +198,10 @@
         border: 1px solid rgba(0, 0, 0, 0.25);
     }
 
-    :global(body.dark) input[type="color"]::-webkit-color-swatch {
-        border-color: rgba(255, 255, 255, 0.5);
-    }
-    :global(body.dark) input[type="color"]::-moz-color-swatch {
-        border-color: rgba(255, 255, 255, 0.5);
-    }
-
     .bg {
         position: fixed;
-        left: 0px;
-        top: 0px;
+        left: 0;
+        top: 0;
         width: 100%;
         height: 100%;
         background: #625E97b0;
@@ -229,12 +222,6 @@
         align-items: center;
         overflow: hidden;
     }
-    :global(body.dark) .bg {
-        background-color: #333333b0;
-    }
-    :global(body.dark) .modal {
-        background-color: #111;
-    }
 
     .modal-title {
         width: 100%;
@@ -246,9 +233,7 @@
         align-items: center;
         justify-content: center;
     }
-    :global(body.dark) .modal-title {
-        background-color: #2A293F;
-    }
+
     .modal-content {
         width: 100%;
         height: 75%;
@@ -289,13 +274,6 @@
         right: -3px;
     }
 
-    :global(body.dark) .extensionMenuPreview {
-        color: #ccc;
-    }
-    :global(body.dark) .extensionMenuPreview:focus,
-    :global(body.dark) .extensionMenuPreview:active {
-        background-color: #1e1e1e;
-    }
     .extensionBubbleIcon {
         width: 20px;
         height: 20px;

@@ -1,4 +1,3 @@
-import javascriptGenerator from '../javascriptGenerator';
 import registerBlock from '../register';
 
 const categoryPrefix = 'core_';

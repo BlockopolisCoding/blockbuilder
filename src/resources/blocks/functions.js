@@ -4,6 +4,8 @@ import registerBlock from '../register';
 const categoryPrefix = 'functions_';
 const categoryColor = '#FF6680';
 
+javascriptGenerator.ORDER_NONE = undefined;
+
 function register() {
     // define func
     registerBlock(`${categoryPrefix}define`, {
@@ -20,8 +22,8 @@ function register() {
         output: "Function",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+    }, () => {
+        const BLOCKS = javascriptGenerator.statementToCode();
         return [`(async (functionArg) => { ${BLOCKS} })`, javascriptGenerator.ORDER_NONE];
     })
 
@@ -37,8 +39,8 @@ function register() {
         previousStatement: null,
         inputsInline: true,
         colour: categoryColor,
-    }, (block) => {
-        const VALUE = javascriptGenerator.valueToCode(block, 'VALUE', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const VALUE = javascriptGenerator.valueToCode();
         const code = `return ${VALUE || ''}`;
         return `${code}\n`;
     })
@@ -61,9 +63,9 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const FUNC = javascriptGenerator.valueToCode(block, 'FUNC', javascriptGenerator.ORDER_ATOMIC);
-        const ARG = javascriptGenerator.valueToCode(block, 'ARG', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const FUNC = javascriptGenerator.valueToCode();
+        const ARG = javascriptGenerator.valueToCode();
         const code = `${FUNC || "()=>{}"}(${ARG});`;
         return `${code}\n`;
     })
@@ -83,9 +85,9 @@ function register() {
         output: null,
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const FUNC = javascriptGenerator.valueToCode(block, 'FUNC', javascriptGenerator.ORDER_ATOMIC);
-        const ARG = javascriptGenerator.valueToCode(block, 'ARG', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const FUNC = javascriptGenerator.valueToCode();
+        const ARG = javascriptGenerator.valueToCode();
         return [`(${FUNC || "()=>{}"}(${ARG}))`, javascriptGenerator.ORDER_NONE];
     })
 
@@ -96,7 +98,7 @@ function register() {
         output: null,
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
+    }, () => {
         return [`functionArg`, javascriptGenerator.ORDER_NONE];
     })
 }

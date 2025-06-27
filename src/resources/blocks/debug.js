@@ -18,8 +18,8 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const LOG = javascriptGenerator.valueToCode(block, 'LOG', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const LOG = javascriptGenerator.valueToCode();
         const code = `console.log(${LOG});`;
         return `${code}\n`;
     })
@@ -37,8 +37,8 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const LOG = javascriptGenerator.valueToCode(block, 'LOG', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const LOG = javascriptGenerator.valueToCode();
         const code = `console.warn(${LOG});`;
         return `${code}\n`;
     })
@@ -56,8 +56,8 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const LOG = javascriptGenerator.valueToCode(block, 'LOG', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const LOG = javascriptGenerator.valueToCode();
         const code = `console.error(${LOG});`;
         return `${code}\n`;
     })
@@ -77,7 +77,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const RAW = block.getFieldValue('RAW')
+        const RAW = block.getFieldValue()
         const code = `${RAW};`;
         return `${code}\n`;
     })
@@ -96,7 +96,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const RAW = block.getFieldValue('RAW')
+        const RAW = block.getFieldValue()
         return [RAW, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -115,7 +115,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const COMMENT = block.getFieldValue('COMMENT')
+        const COMMENT = block.getFieldValue()
         const code = `// ${COMMENT}`;
         return `${code}\n`;
     })
@@ -136,8 +136,8 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+    }, () => {
+        const BLOCKS = javascriptGenerator.statementToCode();
         const code = `/*
 ${BLOCKS}*/;`;
         return `${code}\n`;
@@ -158,8 +158,8 @@ ${BLOCKS}*/;`;
         output: "Boolean",
         inputsInline: true,
         colour: categoryColor,
-    }, (block) => {
-        const FUNC = javascriptGenerator.statementToCode(block, 'FUNC');
+    }, () => {
+        const FUNC = javascriptGenerator.statementToCode();
         return [`await (async () => { try { ${FUNC} return true; } catch { return false; } })()`, javascriptGenerator.ORDER_ATOMIC];
     })
 }

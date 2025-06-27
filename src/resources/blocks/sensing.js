@@ -30,8 +30,8 @@ function register() {
           'single_character_validation',
         ],
     }, (block) => {
-        const KEY = block.getFieldValue('KEY')
-        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const KEY = block.getFieldValue()
+        const BLOCKS = javascriptGenerator.statementToCode();
         const code = `document.addEventListener("keypress", event => {
             if (event.key == '${KEY}') { ${BLOCKS} }
         });`;
@@ -51,8 +51,8 @@ function register() {
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const ALERT = javascriptGenerator.valueToCode(block, 'ALERT', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const ALERT = javascriptGenerator.valueToCode();
         const code = `alert(${ALERT || '""'})`;
         return `${code}\n`;
     })
@@ -69,8 +69,8 @@ function register() {
         output: "Boolean",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const ALERT = javascriptGenerator.valueToCode(block, 'ALERT', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const ALERT = javascriptGenerator.valueToCode();
         return [`confirm(${ALERT || '""'})`, javascriptGenerator.ORDER_ATOMIC];
     })
     
@@ -86,8 +86,8 @@ function register() {
         output: "String",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const ALERT = javascriptGenerator.valueToCode(block, 'ALERT', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const ALERT = javascriptGenerator.valueToCode();
         return [`prompt(${ALERT || '""'})`, javascriptGenerator.ORDER_ATOMIC];
     })
     
@@ -98,7 +98,7 @@ function register() {
         output: "Number",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
+    }, () => {
         return [`Date.now()`, javascriptGenerator.ORDER_ATOMIC];
     })
     
@@ -109,7 +109,7 @@ function register() {
         output: "Number",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
+    }, () => {
         return [`(new Date(Date.now()).getFullYear())`, javascriptGenerator.ORDER_ATOMIC];
     })
     
@@ -120,7 +120,7 @@ function register() {
         output: "Boolean",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
+    }, () => {
         return [`((new Date(new Date(Date.now()).getYear(), 1, 29)).getDate() === 29)`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -130,11 +130,15 @@ function register() {
         output: "Boolean",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
+    }, () => {
         return [`(!!Scratch.extensions.isPenguinMod)`, javascriptGenerator.ORDER_ATOMIC];
     })
 }
 
+Blockly.Extensions = undefined;
+this.getField = function (key) {
+
+};
 Blockly.Extensions.register('single_character_validation', function() {
     this.getField('KEY').setValidator(function(newValue) {
         return newValue.substring(Math.max(newValue.length - 1, 0),newValue.length);

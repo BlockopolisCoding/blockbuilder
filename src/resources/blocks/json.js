@@ -18,8 +18,8 @@ function register() {
         output: "Boolean",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const INPUT = javascriptGenerator.valueToCode();
         return [`await (async () => { try { JSON.parse(${INPUT || '"{}"'}); return true; } catch { return false; } })()`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -36,8 +36,8 @@ function register() {
         output: ["JSONArray", "JSONObject"],
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const INPUT = javascriptGenerator.valueToCode();
         return [`await (async () => { try { return JSON.parse(${INPUT || '"{}"'}); } catch { return false; } })()`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -54,8 +54,8 @@ function register() {
         output: "String",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const INPUT = javascriptGenerator.valueToCode();
         return [`JSON.stringify(${INPUT || "{}"})`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -76,9 +76,9 @@ function register() {
         output: "JSONArray",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
-        const Y = javascriptGenerator.valueToCode(block, 'Y', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const X = javascriptGenerator.valueToCode();
+        const Y = javascriptGenerator.valueToCode();
         return [`[...${Y}, ${X}]`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -104,10 +104,10 @@ function register() {
         output: "JSONArray",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
-        const Y = javascriptGenerator.valueToCode(block, 'Y', javascriptGenerator.ORDER_ATOMIC);
-        const Z = javascriptGenerator.valueToCode(block, 'Z', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const X = javascriptGenerator.valueToCode();
+        const Y = javascriptGenerator.valueToCode();
+        const Z = javascriptGenerator.valueToCode();
         return [`await (async () => { var z = ${Z}; z[${X}] = ${Y}; return z })()`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -129,9 +129,9 @@ function register() {
         output: "JSONArray",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
-        const Y = javascriptGenerator.valueToCode(block, 'Y', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const X = javascriptGenerator.valueToCode();
+        const Y = javascriptGenerator.valueToCode();
         return [`${X}.concat(${Y})`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -153,9 +153,9 @@ function register() {
         output: null,
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
-        const Y = javascriptGenerator.valueToCode(block, 'Y', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const X = javascriptGenerator.valueToCode();
+        const Y = javascriptGenerator.valueToCode();
         return [`${X || "[]"}[${Y || 0}]`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -172,8 +172,8 @@ function register() {
         output: "Number",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const X = javascriptGenerator.valueToCode();
         return [`${X || "[]"}.length`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -199,10 +199,10 @@ function register() {
         output: "JSONObject",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
-        const Y = javascriptGenerator.valueToCode(block, 'Y', javascriptGenerator.ORDER_ATOMIC);
-        const Z = javascriptGenerator.valueToCode(block, 'Z', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const X = javascriptGenerator.valueToCode();
+        const Y = javascriptGenerator.valueToCode();
+        const Z = javascriptGenerator.valueToCode();
         return [`await (async () => { var z = ${Z}; z[${X}] = ${Y}; return z })()`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -224,9 +224,9 @@ function register() {
         output: null,
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
-        const Y = javascriptGenerator.valueToCode(block, 'Y', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const X = javascriptGenerator.valueToCode();
+        const Y = javascriptGenerator.valueToCode();
         return [`${X || "{}"}[${Y || 0}]`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -243,8 +243,8 @@ function register() {
         output: "JSONArray",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const X = javascriptGenerator.valueToCode();
         return [`Object.keys(${X})`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -261,8 +261,8 @@ function register() {
         output: "JSONArray",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const X = javascriptGenerator.valueToCode();
         return [`Object.values(${X})`, javascriptGenerator.ORDER_ATOMIC];
     })
 
@@ -284,9 +284,9 @@ function register() {
         output: "JSONObject",
         inputsInline: true,
         colour: categoryColor
-    }, (block) => {
-        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
-        const Y = javascriptGenerator.valueToCode(block, 'Y', javascriptGenerator.ORDER_ATOMIC);
+    }, () => {
+        const X = javascriptGenerator.valueToCode();
+        const Y = javascriptGenerator.valueToCode();
         return [`{...${X}, ...${Y}}`, javascriptGenerator.ORDER_ATOMIC];
     })
 }

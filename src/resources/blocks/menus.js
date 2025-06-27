@@ -1,6 +1,5 @@
 import javascriptGenerator from '../javascriptGenerator';
 import registerBlock from '../register';
-import { compileVars } from '../compiler/compileVarSection';
 
 const categoryPrefix = 'menus_';
 const categoryColor = '#CB48E8';
@@ -39,9 +38,9 @@ function register() {
         inputsInline: false,
         colour: categoryColor,
     }, (block) => {
-        const ID = block.getFieldValue('ID')
-        const VALUES = javascriptGenerator.valueToCode(block, 'VALUES', javascriptGenerator.ORDER_ATOMIC)
-        const REPORTERS = block.getFieldValue('REPORTERS')
+        const ID = block.getFieldValue()
+        const VALUES = javascriptGenerator.valueToCode()
+        const REPORTERS = block.getFieldValue()
         
         const code = `menus["${ID}"] = {
             acceptReporters: ${REPORTERS},
@@ -82,9 +81,9 @@ function register() {
         inputsInline: false,
         colour: categoryColor,
     }, (block) => {
-        const ID = block.getFieldValue('ID')
-        const VALUES = javascriptGenerator.valueToCode(block, 'VALUES', javascriptGenerator.ORDER_ATOMIC)
-        const REPORTERS = block.getFieldValue('REPORTERS')
+        const ID = block.getFieldValue()
+        const VALUES = javascriptGenerator.valueToCode()
+        const REPORTERS = block.getFieldValue()
         
         const code = `menus["${ID}"] = {
             acceptReporters: ${REPORTERS},

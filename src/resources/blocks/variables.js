@@ -24,8 +24,8 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const NAME = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-        const VAR = javascriptGenerator.valueToCode(block, 'VAR', javascriptGenerator.ORDER_ATOMIC);
+        const NAME = javascriptGenerator.valueToCode();
+        const VAR = javascriptGenerator.valueToCode();
         const code = `variables[${NAME || '""'}] = ${VAR || '""'}`;
         return `${code}\n`;
     })
@@ -44,7 +44,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const NAME = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+        const NAME = javascriptGenerator.valueToCode();
         return [`variables[${NAME || '""'}]`, javascriptGenerator.ORDER_ATOMIC];
     })
     // set localStorage
@@ -66,8 +66,8 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const NAME = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-        const VAR = javascriptGenerator.valueToCode(block, 'VAR', javascriptGenerator.ORDER_ATOMIC);
+        const NAME = javascriptGenerator.valueToCode();
+        const VAR = javascriptGenerator.valueToCode();
         const code = `localStorage.setItem(${NAME || '""'}, ${VAR || '""'})`;
         return `${code}\n`;
     })
@@ -86,7 +86,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const NAME = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
+        const NAME = javascriptGenerator.valueToCode();
         return [`localStorage.getItem(${NAME || '""'})`, javascriptGenerator.ORDER_ATOMIC];
     })
 }

@@ -334,8 +334,8 @@
 
     .bg {
         position: fixed;
-        left: 0px;
-        top: 0px;
+        left: 0;
+        top: 0;
         width: 100%;
         height: 100%;
         background: #ff4b4bb0;
@@ -356,12 +356,6 @@
         align-items: center;
         overflow: hidden;
     }
-    :global(body.dark) .bg {
-        background-color: #333333b0;
-    }
-    :global(body.dark) .modal {
-        background-color: #111;
-    }
 
     .modal-title {
         width: 100%;
@@ -373,9 +367,7 @@
         align-items: center;
         justify-content: center;
     }
-    :global(body.dark) .modal-title {
-        background-color: #2A293F;
-    }
+
     .modal-content {
         width: 100%;
         height: 83%;
@@ -398,7 +390,7 @@
         border-radius: 1024px;
         text-align: center;
         border: 1px solid rgba(0, 0, 0, 0.2);
-        outline: 0px solid #ff4b4b44;
+        outline: 0 solid #ff4b4b44;
         transition: 0.25s linear;
     }
     .block-id:focus,
@@ -407,24 +399,16 @@
         outline: 4px solid #ff4b4b44;
         transition: 0.25s linear;
     }
-    :global(body.dark) .block-id {
-        background: transparent;
-        border-color: rgba(255, 255, 255, 0.7);
-        color: white;
-    }
+
     .block-id[data-invalid="true"] {
         background-color: #ffabab;
-        text-decoration: red underline;
-    }
-    :global(body.dark) .block-id[data-invalid="true"] {
-        background-color: #9b0000 !important;
         text-decoration: red underline;
     }
 
     .block-id-warning {
         width: 100%;
         margin-block: 0;
-        margin: 8px 0px;
+        margin: 8px 0;
         text-align: center;
         font-weight: bold;
     }
@@ -438,18 +422,12 @@
         border-radius: 12px;
         cursor: pointer;
     }
-    :global(body.dark) .block-addition {
-        color: white;
-        border-color: #ccc;
-    }
+
     .block-addition:focus,
     .block-addition:hover {
         border-color: #ff4b4b !important;
     }
     .block-addition:active {
         border-color: black !important;
-    }
-    :global(body.dark) .block-addition:active {
-        border-color: rgb(114, 114, 114) !important;
     }
 </style>
